@@ -1,0 +1,16 @@
+{
+  "name": "mock-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "reverse": "adb reverse tcp:3000 tcp:3000",
+    "backup": "cp -R data/ ../data/"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.1.0"
+  }
+}
