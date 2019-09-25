@@ -2,32 +2,18 @@ const envs = require('dotenv').config()
 const http = require('http');
 const process = require('process');
 const fs = require('fs');
+const { withFilePath, openJSON } = require('./utils/fileUtils');
+const { log, logd } = require('./utils/logUtils')
 
-// LOCAL ENVS
-
-const isDebug = process.env.MOCK_DEBUG
-const enableProxy = process.env.MOCK_ENABLE_PROXY || true
 const serverPort = process.env.MOCK_SERVER_PORT || 3000
 const mockHOST = process.env.MOCK_HOST || undefined
 const mockPort = process.env.MOCK_PORT || 80
 
-const logd = (...args) => {
-  if (isDebug) console.log(...args)
-}
-
-const log = (...args) => {
-  console.log(...args)
-}
-
-const withFilePath = (url, method) => {
-  const name = 'res_' + method.toLowerCase()
-  return `./data${url}/${name}.json`
-}
-
-const openJSON = (filePath) => {
-  logd(filePath)
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
+log('----------------------------')
+log('serverPort', serverPort)
+log('mockHOST', mockHOST)
+log('mockPort', mockPort)
+log('----------------------------')
 
 const findMockFile = (url, method) => {
   const filePath = withFilePath(url, method)
@@ -43,7 +29,7 @@ const findMockFile = (url, method) => {
 }
 
 const requestExternalMock = (client_req, client_res) => {
-  if (!enableProxy || !mockHOST) {
+  if (!mockHOST) {
     client_res.writeHead(500, {})
     client_res.end("Mock fallback is not enabled.")
     return
@@ -80,17 +66,5 @@ const onRequest = (client_req, client_res) => {
     requestExternalMock(client_req, client_res)
   }
 }
-
-log('----------------------------')
-log('serverPort', serverPort)
-log('mockHOST', mockHOST)
-log('mockPort', mockPort)
-log('enableProxy', enableProxy)
-log('----------------------------')
-
-// const options = {
-//   key: fs.readFileSync('keys/default.key'),
-//   cert: fs.readFileSync('keys/default.crt')
-// };
 
 http.createServer(onRequest).listen(serverPort);
