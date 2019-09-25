@@ -42,5 +42,5 @@ curl -X GET localhost:3000/api/v1/test
 ```
 
 ## TODO
-- Api dump mode (cache to api request.)
+- Api dump mode (cache to api request)
 - Unit tests
