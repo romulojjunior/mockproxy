@@ -5,7 +5,7 @@ This project is a simple mock server with fallback mode.
 - Create api mock with folder and json files.
 - Proxy to other api mock using fallback mode.
 
-## How to
+## Mock files
 Create a file into data/api/v1/test folder
 - res_get.json
 - res_post.json
