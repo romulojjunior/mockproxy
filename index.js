@@ -1,4 +1,4 @@
-const envs = require('dotenv').config()
+require('dotenv').config()
 const http = require('http');
 const process = require('process');
 const fs = require('fs');
