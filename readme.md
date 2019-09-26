@@ -28,8 +28,11 @@ Create a file into data/api/v1/test folder
 // Create .env
 MOCK_DEBUG=false
 MOCK_SERVER_PORT=3000
-MOCK_HOST=
+MOCK_HOST="www.my-default-mock.xyz.com"
 MOCK_PORT=80
+
+// Dependencies
+npm install
 
 // Exec
 npm start
