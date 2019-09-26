@@ -10,6 +10,7 @@ Create a file into data/api/v1/test folder
 - res_get.json
 - res_post.json
 - res_put.json
+- ...
 
 ```js
 {
@@ -38,12 +39,16 @@ npm install
 npm start
 ```
 
-## Test 
+## Tests
 
+```js
+npm run jest
+```
+or 
 ```js
 curl -X GET localhost:3000/api/v1/test
 ```
 
 ## TODO
 - Api dump mode (cache to api request)
-- Unit tests
+- More unit tests
