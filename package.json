@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "jest": "jest .",
     "reverse": "adb reverse tcp:3000 tcp:3000",
     "backup": "cp -R data/ ../data/"
   },
