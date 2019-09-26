@@ -9,8 +9,8 @@
   "scripts": {
     "start": "node index.js",
     "jest": "jest .",
-    "eslint": "eslint --config .eslintrc.json *.js",
-    "eslint-fix": "eslint --config .eslintrc.json *.js --fix",
+    "eslint": "eslint --config .eslintrc.json **/*.js",
+    "eslint-fix": "eslint --config .eslintrc.json **/*.js --fix",
     "reverse": "adb reverse tcp:3000 tcp:3000",
     "backup": "cp -R data/ ../data/"
   },
