@@ -1,6 +1,7 @@
 {
   "name": "mock-proxy",
   "version": "1.0.0",
+  "engines" : { "node" : ">=8.14.0" },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,5 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
