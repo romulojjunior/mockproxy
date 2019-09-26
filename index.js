@@ -17,7 +17,7 @@ log('----------------------------')
 
 const findMockFile = (url, method) => {
   const filePath = withFilePath(url, method)
-  const fallbackPath = withFilePath(url.split("?")[0], method)
+  const fallbackPath = withFilePath(url.split('?')[0], method)
 
   if (fs.existsSync(filePath)) {
     return openJSON(filePath)     
@@ -31,7 +31,7 @@ const findMockFile = (url, method) => {
 const requestExternalMock = (client_req, client_res) => {
   if (!mockHOST) {
     client_res.writeHead(500, {})
-    client_res.end("Mock fallback is not enabled.")
+    client_res.end('Mock fallback is not enabled.')
     return
   }
 
@@ -52,7 +52,7 @@ const requestExternalMock = (client_req, client_res) => {
   } catch(e) {
     logd(e)
     client_res.writeHead(500, {})
-    client_res.end("Mock URL not found.")
+    client_res.end('Mock URL not found.')
   }
 }
 
