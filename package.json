@@ -11,8 +11,6 @@
     "build": "tsc -p tsconfig.json",
     "watch": "tsc -w  -p tsconfig.json",
     "jest": "jest .",
-    "eslint": "eslint --config .eslintrc.json ./src/**/*.js",
-    "eslint-fix": "eslint --config .eslintrc.json ./src/**/*.js --fix",
     "reverse": "adb reverse tcp:3000 tcp:3000",
     "backup": "cp -R data/ ../data/"
   },
