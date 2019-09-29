@@ -7,7 +7,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/app.js",
+    "start": "node build/main.js",
     "build": "tsc -p tsconfig.json",
     "watch": "tsc -w  -p tsconfig.json",
     "jest": "jest .",
