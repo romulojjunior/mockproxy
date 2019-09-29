@@ -1,6 +1,9 @@
 import process from 'process';
-import MockFile from './models/mock-file';
 import http from 'http';
+
+import { log, logd } from './utils/log-utils';
+
+import MockFile from './models/mock-file';
 
 interface Http {
     createServer(onRequest: (req: any, res: any) => any): any;
@@ -25,15 +28,12 @@ class App {
 
     private buildRequestCallback() {
         const onRequest = (req: any, res: any) => {
-            let mockFile = new MockFile()
-                .withPath(req.url)
-                .withHttpVerb(req.method);
+            log(req.url);
+            let mockFile = MockFile.loadFromDisk(req.url, req.method);
 
-            let resJson = mockFile.asJson(); //findMockFile(req.url, req.method);
-            if (resJson) {
-            //   log(resJson);
-              res.writeHead(resJson.statusCode, resJson.headers);
-              res.end(JSON.stringify(resJson.body));
+            if (mockFile) {
+              res.writeHead(mockFile.statusCode, mockFile.headers);
+              res.end(JSON.stringify(mockFile.body));
             } else {
               this.onMockFallback(req, res);
             }
@@ -43,6 +43,12 @@ class App {
     }
 
     createServer(http: Http | any) {
+        log('----------------------------');
+        log('serverPort', this.serverPort);
+        log('mockHOST', this.mockHost);
+        log('mockPort', this.mockPort);
+        log('----------------------------');
+
         let onRequest = this.buildRequestCallback();
         http.createServer(onRequest).listen(this.serverPort);
     }
@@ -61,8 +67,6 @@ function main() {
     };
 
     app.createServer(http);
-
-    console.log(app.onMockFallback(null, null));
 }
 
 main()
