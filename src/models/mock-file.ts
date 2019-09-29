@@ -47,7 +47,7 @@ class MockFile {
       body: object
     };
 
-    var jsonFile: JsonFile | null = null;
+    let jsonFile: JsonFile | null = null;
     const filePath = FileUtils.withFilePath(path, httpVerb);
     const fallbackPath = FileUtils.withFilePath(path.split('?')[0], httpVerb);
 
