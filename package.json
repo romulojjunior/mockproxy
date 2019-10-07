@@ -17,7 +17,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^8.1.0"
+    "@types/shelljs": "^0.8.5",
+    "dotenv": "^8.1.0",
+    "install": "^0.13.0",
+    "shelljs": "^0.8.3"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

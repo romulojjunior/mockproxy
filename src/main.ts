@@ -1,6 +1,8 @@
 import App from './app';
 import ExternalMockClient from './clients/external-mock-client';
 import http from 'http';
+import MockFiles from './utils/file-utils';
+import MockFile from './models/mock-file';
 
 function main() {
   const serverPort = Number(process.env.MOCK_SERVER_PORT) || 3000;
@@ -16,6 +18,15 @@ function main() {
 
   app.onMockFallback = (req, res) => {
     if (mockHost) {
+      externalMockClient.onFinished = (resFallback, result) => {
+        const mockFile = new MockFile()
+        mockFile.withHeaders(resFallback.headers);
+        mockFile.withStatusCode(resFallback.statusCode);
+        mockFile.withHttpVerb(req.method);
+        mockFile.withPath(req.url);
+        mockFile.withBody(JSON.parse(result));
+        MockFile.save(req.url, mockFile);
+      }
       externalMockClient.request(req, res);
     } else {
       res.writeHead(500, {});
