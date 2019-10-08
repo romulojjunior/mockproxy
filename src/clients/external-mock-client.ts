@@ -4,11 +4,14 @@ class ExternalMockClient {
   hostname: string
   port: number
   httpClient: any
+  onFinished: (res: any, result: string) => void;
 
   constructor(httpClient: any, hostname: string, port: number) {
     this.httpClient = httpClient;
     this.hostname = hostname;
     this.port = port;
+
+    this.onFinished = (res: any, result: string) => {}
   }
 
   request(appReq: any, appRes: any) {
@@ -21,9 +24,9 @@ class ExternalMockClient {
   
     try {  
       const proxy = this.httpClient.request(options, (res: any) => {
-        let resRow: string = '';
-        res.on('data', (chunk: any) => resRow += chunk);
-        res.on('end', (chunk: any) => log(resRow));
+        let resBody: string = '';
+        res.on('data', (chunk: any) => resBody += chunk);
+        res.on('end', (chunk: any) => this.onFinished(res, resBody));
 
         appRes.writeHead(res.statusCode, res.headers);
         res.pipe(appRes, { end: true });

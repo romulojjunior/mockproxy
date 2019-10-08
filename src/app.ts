@@ -27,7 +27,7 @@ class App {
   private buildRequestCallback() {
     const onRequest = (req: any, res: any) => {
       log(req.url);
-      let mockFile = MockFile.loadFromDisk(req.url, req.method);
+      let mockFile = MockFile.load(req.url, req.method);
       if (mockFile) {
         res.writeHead(mockFile.statusCode, mockFile.headers);
         log(mockFile.body);
@@ -41,12 +41,6 @@ class App {
   }
 
   createServer(http: Http | any) {
-    log('----------------------------');
-    log('serverPort', this.serverPort);
-    log('mockHost', this.mockHost);
-    log('mockPort', this.mockPort);
-    log('----------------------------');
-
     let onRequest = this.buildRequestCallback();
     http.createServer(onRequest).listen(this.serverPort);
   }

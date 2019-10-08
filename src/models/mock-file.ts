@@ -27,7 +27,7 @@ class MockFile {
     return this;
   }
 
-  wittBody(body: Object) : MockFile{
+  withBody(body: Object) : MockFile{
     this.body = body;
     return this;
   }
@@ -40,7 +40,7 @@ class MockFile {
     }
   }
 
-  static loadFromDisk(path: string, httpVerb: string) : MockFile | null {
+  static load(path: string, httpVerb: string) : MockFile | null {
     interface JsonFile {
       statusCode: number
       headers: object
@@ -63,11 +63,23 @@ class MockFile {
         .withHttpVerb(httpVerb)
         .withStatusCode(jsonFile.statusCode)
         .withHeaders(jsonFile.headers)
-        .wittBody(jsonFile.body)
+        .withBody(jsonFile.body)
     } else {
       return null;
     }
   }
+
+  static save(path: string, mockFile: MockFile) : boolean {
+    if (mockFile.path && mockFile.httpVerb) {
+      const filePath = FileUtils.withFilePath(mockFile.path, mockFile.httpVerb);
+      FileUtils.createDir(path);
+      FileUtils.saveJSON(filePath, mockFile)
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
 
 export default MockFile;

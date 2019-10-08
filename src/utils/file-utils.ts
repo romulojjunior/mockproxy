@@ -1,4 +1,5 @@
 import fs from 'fs';
+import shell from 'shelljs';
 
 class FileUtils {
   static withFilePath(path: string, httpVerb: string) : string {
@@ -12,6 +13,17 @@ class FileUtils {
 
   static existsSync(filePath: string, storage = fs) : boolean {
     return fs.existsSync(filePath);
+  }
+
+  static createDir(path: string) {
+    if (!this.existsSync(path)) {
+      shell.mkdir('-p', `./data/${path}`);
+    }
+  }
+
+  static saveJSON(filePath: string, obj: Object, storage = fs) {
+    let data = JSON.stringify(obj);
+    return storage.writeFileSync(filePath, data);
   }
   
 }

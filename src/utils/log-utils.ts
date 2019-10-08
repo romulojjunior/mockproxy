@@ -1,4 +1,4 @@
-const isDebug = process.env.MOCK_DEBUG;
+const isDebug = JSON.parse(process.env.MOCK_DEBUG || 'false');
 
 export const log = (...args: any) => {
   console.log(args);
