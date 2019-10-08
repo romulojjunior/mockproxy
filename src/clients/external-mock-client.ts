@@ -11,9 +11,7 @@ class ExternalMockClient {
     this.hostname = hostname;
     this.port = port;
 
-    this.onFinished = (res: any, result: string) => {
-      log(result);
-    }
+    this.onFinished = (res: any, result: string) => {}
   }
 
   request(appReq: any, appRes: any) {

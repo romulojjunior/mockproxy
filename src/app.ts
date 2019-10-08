@@ -41,12 +41,6 @@ class App {
   }
 
   createServer(http: Http | any) {
-    log('----------------------------');
-    log('serverPort', this.serverPort);
-    log('mockHost', this.mockHost);
-    log('mockPort', this.mockPort);
-    log('----------------------------');
-
     let onRequest = this.buildRequestCallback();
     http.createServer(onRequest).listen(this.serverPort);
   }
