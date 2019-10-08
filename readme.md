@@ -53,6 +53,7 @@ This flag allow to create mock files automatic. Every new request to another ser
 ```js
 // enable cache
 export MOCK_CACHE=true
+
 // enable fallback mode
 export MOCK_HOST="www.my-default-mock.xyz.com"
 ```
