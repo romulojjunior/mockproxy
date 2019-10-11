@@ -32,7 +32,7 @@ function main() {
       }
       externalMockClient.request(req, res);
     } else {
-      res.writeHead(500, {});
+      res.writeHead(404, {});
       res.end('Mock fallback is not enabled.');
     }
   };

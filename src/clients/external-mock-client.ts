@@ -19,7 +19,8 @@ class ExternalMockClient {
       hostname: this.hostname,
       port: this.port,
       path: appReq.url,
-      method: appReq.method
+      method: appReq.method,
+      headers: JSON.stringify(appReq.headers)
     };
   
     try {  
