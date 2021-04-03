@@ -14,15 +14,16 @@ class ExternalMockClient {
     this.onFinished = (res: any, result: string) => {}
   }
 
-  request(appReq: any, appRes: any) {
+  request(appReq: any, appRes: any, headers: any) {
     const options = {
       hostname: this.hostname,
       port: this.port,
       path: appReq.url,
       method: appReq.method,
-      headers: JSON.stringify(appReq.headers)
+      headers: headers
     };
-  
+
+    console.log(options)
     try {  
       const proxy = this.httpClient.request(options, (res: any) => {
         let resBody: string = '';

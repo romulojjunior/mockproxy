@@ -28,11 +28,15 @@ Create a file into data/api/v1/test folder
 ## Run server
 ```js
 // Create .env
-export MOCK_DEBUG=false
-export MOCK_CACHE=false
+export MOCK_DEBUG=true
+export MOCK_CACHE=true
 export MOCK_SERVER_PORT=3000
-export MOCK_HOST="www.my-default-mock.xyz.com"
-export MOCK_PORT=80
+export MOCK_HEADERS='{"connection": "keep-alive", "cache-control": "max-age=0", "user-agent": "MacOSx", "accept": "application/json"}'
+
+export MOCK_ENABLE_HTTPS=true
+export MOCK_PROXY_HOST="de1.api.radio-browser.info"
+export MOCK_PROXY_PORT=443
+
 
 // Exc
 source .env

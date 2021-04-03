@@ -14,10 +14,10 @@ class App {
   mockPort: number
   onMockFallback: (req: any, res: any) => void;
 
-  constructor(serverPort = 3000, mockHost?: string, mockPort = 80) {
+  constructor(serverPort = 3000, mockProxyHost?: string, mockProxyPort = 80) {
     this.serverPort = serverPort;
-    this.mockHost = mockHost;
-    this.mockPort = mockPort;
+    this.mockHost = mockProxyHost;
+    this.mockPort = mockProxyPort;
 
     this.onMockFallback = (req, res) => {
       throw 'onMockFallback is not implemented.';
